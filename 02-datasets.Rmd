@@ -1,0 +1,226 @@
+# Accesing the data
+
+## Before downloading datasets
+
+If you are going to download data, you have to read the [Code of Conduct](https://docs.tradestatistics.io/index.html#code-of-conduct) first.
+
+## API
+
+*Since Aug 2021 the API features an interactive page https://api.tradestatistics.io/__docs__/.*
+
+The advantage of the API over https download is that you can filter what to obtain and also access some additional tables.
+
+To obtain exactly the same data as with compressed files, please refer to \@ref(yrpc-year-reporter-partner-and-commodity-code).
+
+If you use R you'll need `jsonlite` package.
+
+```{r message=FALSE, warning=FALSE}
+library(jsonlite)
+```
+
+These packages are also useful:
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(stringr)
+```
+
+### Available tables
+
+```{r, warning=FALSE, message=FALSE, cache = TRUE}
+as_tibble(fromJSON("https://api.tradestatistics.io/tables"))
+```
+
+### Metadata
+
+```{r, warning=FALSE, message=FALSE, cache = TRUE}
+## Countries (no filter)
+rda_countries <- "countries.rda"
+
+if (!file.exists(rda_countries)) {
+  countries <- as_tibble(fromJSON(
+    "https://api.tradestatistics.io/countries"
+  ))
+
+  save(countries, file = rda_countries, compress = "xz")
+
+  countries
+} else {
+  load(rda_countries)
+
+  countries
+}
+
+## Commodities (no filter)
+rda_commodities <- "commodities.rda"
+
+if (!file.exists(rda_commodities)) {
+  commodities <- as_tibble(fromJSON(
+    "https://api.tradestatistics.io/commodities"
+  ))
+
+  save(commodities, file = rda_commodities, compress = "xz")
+
+  commodities
+} else {
+  load(rda_commodities)
+
+  commodities
+}
+```
+
+Please notice that these tables include some aliases. 
+
+`countries` includes some meta-codes, `c-xx` where `xx` must the first two letters of a continent and `all`, this is:
+
+```{r, echo = FALSE}
+countries %>%
+  filter(str_sub(country_iso, 1, 2) == "c-" | country_iso == "all") %>%
+  select(country_iso, country_name_english) %>%
+  rename(
+    `Alias` = country_iso,
+    `Meaning` = country_name_english
+  )
+```
+
+`commodities` also includes some meta-codes, `xx` for the first two digits of a code and those digits are the commodity group and `all`, this is:
+
+```{r, echo = FALSE}
+commodities %>%
+  filter(str_length(commodity_code) %in% 2:3) %>%
+  select(commodity_code, commodity_fullname_english) %>%
+  rename(
+    `Alias` = commodity_code,
+    `Meaning` = commodity_fullname_english
+  )
+```
+
+### API parameters
+
+The tables provided withing our API contain at least one of these fields:
+
+* Year (`y`) 
+* Reporter ISO (`r`)
+* Partner ISO (`p`)
+* Commodity Code (`c`)
+
+The most detailed table is `yrpc` that contains all bilateral flows at commodity level.
+
+With respect to `y` you can pass any integer contained in [1962,2020].
+
+Both `r` and `p` accept any valid ISO code or alias contained in the [countries](https://api.tradestatistics.io/countries) table. For example, both `chl` (valid ISO code) and `c-am` (continent Americas, an alias) are valid API filtering parameters.
+
+`c` takes any valid commodity code or alias from the [commodities](https://api.tradestatistics.io/commodities). For example, both `0101` (valid HS commodity code) and `01` (valid HS group code) are valid API filtering parameters.
+
+By default the API takes `c = "all"` by default.
+
+You can always skip `c`, but `y`, `r` and `p` are required to return data.
+
+### Available reporters
+
+The only applicable filter is by year.
+
+```{r, warning=FALSE, message=FALSE, cache = TRUE}
+# Available reporters (filter by year)
+as_tibble(fromJSON(
+  "https://api.tradestatistics.io/reporters?y=2018"
+))
+```
+
+### YRPC (Year, Reporter, Partner and Commodity Code)
+
+The applicable filters here are year, reporter, partner and commodity code.
+
+```{r yrpc, warning=FALSE, message=FALSE, cache = TRUE}
+# Year - Reporter - Partner - Commodity Code
+
+yrpc <- as_tibble(fromJSON(
+  "https://api.tradestatistics.io/yrpc?y=2018&r=usa&p=mex&c=8703"
+))
+
+yrpc
+```
+
+Columns definition:
+
+* `reporter_iso`: Official ISO-3 code for the reporter (e.g. the country that reports X dollars in exports/imports from/to country Y)
+* `partner_iso`: Official ISO-3 code for the partner
+* `commodity_code`: Official Harmonized System rev. 1992 (HS92) commodity code (e.g. according to the \code{commodities} table in the API, 8703 stands for "Motor cars and other motor vehicles; principally designed for the transport of persons (other than those of heading no. 8702), including station wagons and racing cars")
+* `export_value_usd`: Exports measured in nominal United States Dollars (USD)
+* `import_value_usd`: Imports measured in nominal United States Dollars (USD)
+
+### YRC (Year, Reporter and Commodity Code)
+
+The only applicable filter is by year, reporter and commodity code.
+
+```{r yrc, warning=FALSE, message=FALSE, cache = TRUE}
+# Year - Reporter - Commodity Code
+
+yrc <- as_tibble(fromJSON(
+  "https://api.tradestatistics.io/yrc?y=2018&r=chl"
+))
+
+yrc
+```
+
+### YRP (Year, Reporter and Partner)
+
+The only applicable filter is by year, reporter and partner.
+
+```{r yrp, warning=FALSE, message=FALSE, cache = TRUE}
+# Year - Reporter - Partner
+yrp <- as_tibble(fromJSON(
+  "https://api.tradestatistics.io/yrp?y=2018&r=chl&p=arg"
+))
+
+yrp
+```
+
+### YC (Year and Commodity Code)
+
+The only applicable filter is by year and commodity code.
+
+```{r yc, warning=FALSE, message=FALSE, cache = TRUE}
+# Year - Commodity Code
+yc <- as_tibble(fromJSON(
+  "https://api.tradestatistics.io/yc?y=2018&c=0101"
+))
+
+yc
+```
+
+### YR (Year and Reporter)
+
+The only applicable filter is by year and reporter.
+
+```{r yr, warning=FALSE, message=FALSE, cache = TRUE}
+## Year - Reporter
+yr <- as_tibble(fromJSON(
+  "https://api.tradestatistics.io/yr?y=2018&r=chl"
+))
+
+yr
+```
+
+## R Package
+
+To ease API using, we provide an [R Package](https://ropensci.github.io/tradestatistics/). This package is a part of [ROpenSci](https://ropensci.org/) and its documentation is available on a separate [pkgdown site](https://ropensci.github.io/tradestatistics/).
+
+Here's what the package does:
+
+```{r, echo = F, fig.cap="R package flow"}
+knitr::include_graphics("fig/data-diagram.svg")
+```
+
+## Dashboard (beta)
+
+To ease API using, we provide a [Shiny Dashboard](https://shiny.tradestatistics.io/) that is still under improvements.
+
+## Apache Arrow datasets
+
+The same data used for the dashboard can be accessed from a public DigitalOcean Space: https://tradestatistics.ams3.digitaloceanspaces.com. This can be used, for example, with [rclone](https://rclone.org/):
+```
+rclone sync spaces:tradestatistics/hs-rev1992-visualization hs-rev1992-visualization
+```
+
+Please check the [md5sums](https://tradestatistics.io/md5sums.txt) to verify data integrity after downloading.

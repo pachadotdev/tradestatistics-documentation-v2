@@ -1,0 +1,19 @@
+bookdown::gitbook:
+  split_by: chapter
+  pandoc_args: ["--csl", "ieee.csl"]
+  sharing:
+      facebook: yes
+      twitter: yes
+  css: styles.css
+  config:
+    toc:
+      collapse: subsection
+      before: |
+        <li><a href="./">Table of Contents</a></li>
+      after: |
+        <li>
+          <a href="https://www.digitalocean.com/">
+            <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/PoweredByDO/DO_Powered_by_Badge_blue.svg" width="201px">
+          </a>
+        </li>
+        

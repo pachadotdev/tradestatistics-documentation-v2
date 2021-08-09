@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 3 Accesing the data | Open Trade Statistics</title>
+  <meta name="description" content="Section 3 Accesing the data | Open Trade Statistics" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 3 Accesing the data | Open Trade Statistics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://docs.tradestatistics.io" />
+  
+  
+  <meta name="github-repo" content="tradestatistics/documentation" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 3 Accesing the data | Open Trade Statistics" />
+  
+  
+  
+
+<meta name="author" content="Pachá (Mauricio Vargas Sepúlveda)" />
+
+
+<meta name="date" content="2021-08-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-processing.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Table of Contents</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#project-goals"><i class="fa fa-check"></i><b>1.1</b> Project goals</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data-sources-and-availability"><i class="fa fa-check"></i><b>1.2</b> Data sources and availability</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>1.3</b> Code of Conduct</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#open-source-sponsorships"><i class="fa fa-check"></i><b>1.4</b> Open Source Sponsorships</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-processing.html"><a href="data-processing.html"><i class="fa fa-check"></i><b>2</b> Data processing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-processing.html"><a href="data-processing.html#tidy-data"><i class="fa fa-check"></i><b>2.1</b> Tidy Data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-processing.html"><a href="data-processing.html#data-cleaning"><i class="fa fa-check"></i><b>2.2</b> Data cleaning</a></li>
+<li class="chapter" data-level="2.3" data-path="data-processing.html"><a href="data-processing.html#github-repositories"><i class="fa fa-check"></i><b>2.3</b> GitHub repositories</a></li>
+<li class="chapter" data-level="2.4" data-path="data-processing.html"><a href="data-processing.html#coding-style-and-performant-code"><i class="fa fa-check"></i><b>2.4</b> Coding style and performant code</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="accesing-the-data.html"><a href="accesing-the-data.html"><i class="fa fa-check"></i><b>3</b> Accesing the data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="accesing-the-data.html"><a href="accesing-the-data.html#before-downloading-datasets"><i class="fa fa-check"></i><b>3.1</b> Before downloading datasets</a></li>
+<li class="chapter" data-level="3.2" data-path="accesing-the-data.html"><a href="accesing-the-data.html#api"><i class="fa fa-check"></i><b>3.2</b> API</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="accesing-the-data.html"><a href="accesing-the-data.html#available-tables"><i class="fa fa-check"></i><b>3.2.1</b> Available tables</a></li>
+<li class="chapter" data-level="3.2.2" data-path="accesing-the-data.html"><a href="accesing-the-data.html#metadata"><i class="fa fa-check"></i><b>3.2.2</b> Metadata</a></li>
+<li class="chapter" data-level="3.2.3" data-path="accesing-the-data.html"><a href="accesing-the-data.html#api-parameters"><i class="fa fa-check"></i><b>3.2.3</b> API parameters</a></li>
+<li class="chapter" data-level="3.2.4" data-path="accesing-the-data.html"><a href="accesing-the-data.html#available-reporters"><i class="fa fa-check"></i><b>3.2.4</b> Available reporters</a></li>
+<li class="chapter" data-level="3.2.5" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yrpc-year-reporter-partner-and-commodity-code"><i class="fa fa-check"></i><b>3.2.5</b> YRPC (Year, Reporter, Partner and Commodity Code)</a></li>
+<li class="chapter" data-level="3.2.6" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yrc-year-reporter-and-commodity-code"><i class="fa fa-check"></i><b>3.2.6</b> YRC (Year, Reporter and Commodity Code)</a></li>
+<li class="chapter" data-level="3.2.7" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yrp-year-reporter-and-partner"><i class="fa fa-check"></i><b>3.2.7</b> YRP (Year, Reporter and Partner)</a></li>
+<li class="chapter" data-level="3.2.8" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yc-year-and-commodity-code"><i class="fa fa-check"></i><b>3.2.8</b> YC (Year and Commodity Code)</a></li>
+<li class="chapter" data-level="3.2.9" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yr-year-and-reporter"><i class="fa fa-check"></i><b>3.2.9</b> YR (Year and Reporter)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="accesing-the-data.html"><a href="accesing-the-data.html#r-package"><i class="fa fa-check"></i><b>3.3</b> R Package</a></li>
+<li class="chapter" data-level="3.4" data-path="accesing-the-data.html"><a href="accesing-the-data.html#dashboard-beta"><i class="fa fa-check"></i><b>3.4</b> Dashboard (beta)</a></li>
+<li class="chapter" data-level="3.5" data-path="accesing-the-data.html"><a href="accesing-the-data.html#apache-arrow-datasets"><i class="fa fa-check"></i><b>3.5</b> Apache Arrow datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
+<li class="divider"></li>
+<li>
+  <a href="https://www.digitalocean.com/">
+    <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/PoweredByDO/DO_Powered_by_Badge_blue.svg" width="201px">
+  </a>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Open Trade Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="accesing-the-data" class="section level1" number="3">
+<h1><span class="header-section-number">Section 3</span> Accesing the data</h1>
+<div id="before-downloading-datasets" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Before downloading datasets</h2>
+<p>If you are going to download data, you have to read the <a href="https://docs.tradestatistics.io/index.html#code-of-conduct">Code of Conduct</a> first.</p>
+</div>
+<div id="api" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> API</h2>
+<p><em>Since Aug 2021 the API features an interactive page <a href="https://api.tradestatistics.io/__docs__/" class="uri">https://api.tradestatistics.io/__docs__/</a>.</em></p>
+<p>The advantage of the API over https download is that you can filter what to obtain and also access some additional tables.</p>
+<p>To obtain exactly the same data as with compressed files, please refer to <a href="accesing-the-data.html#yrpc-year-reporter-partner-and-commodity-code">3.2.5</a>.</p>
+<p>If you use R you’ll need <code>jsonlite</code> package.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="accesing-the-data.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span></code></pre></div>
+<p>These packages are also useful:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="accesing-the-data.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-2"><a href="accesing-the-data.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
+<div id="available-tables" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Available tables</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="accesing-the-data.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(<span class="fu">fromJSON</span>(<span class="st">&quot;https://api.tradestatistics.io/tables&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 14 × 3
+##    table                   description                  source                  
+##    &lt;chr&gt;                   &lt;chr&gt;                        &lt;chr&gt;                   
+##  1 countries               Countries metadata           UN Comtrade (with modif…
+##  2 reporters               Reporters for a given year   UN Comtrade (with modif…
+##  3 partners                Partners for a given year    UN Comtrade (with modif…
+##  4 commodities             Commodities metadata         Center for Internationa…
+##  5 commodities_shortnames  Commodities short names      Center for Internationa…
+##  6 commodities_communities Commodities communities      Open Trade Statistics   
+##  7 yrpc                    Reporter-Partner trade at c… Open Trade Statistics   
+##  8 yrp                     Reporter-Partner trade at a… Open Trade Statistics   
+##  9 yrc                     Reporter trade at commodity… Open Trade Statistics   
+## 10 yr                      Reporter trade at aggregate… Open Trade Statistics   
+## 11 yr-communities          Reporter trade at commodity… Open Trade Statistics   
+## 12 yr-groups               Reporter trade at commodity… Open Trade Statistics   
+## 13 yc                      Commodity trade at detailed… Open Trade Statistics   
+## 14 years                   Minimum and maximum years w… Open Trade Statistics</code></pre>
+</div>
+<div id="metadata" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Metadata</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="accesing-the-data.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Countries (no filter)</span></span>
+<span id="cb6-2"><a href="accesing-the-data.html#cb6-2" aria-hidden="true" tabindex="-1"></a>rda_countries <span class="ot">&lt;-</span> <span class="st">&quot;countries.rda&quot;</span></span>
+<span id="cb6-3"><a href="accesing-the-data.html#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="accesing-the-data.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(rda_countries)) {</span>
+<span id="cb6-5"><a href="accesing-the-data.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  countries <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">fromJSON</span>(</span>
+<span id="cb6-6"><a href="accesing-the-data.html#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;https://api.tradestatistics.io/countries&quot;</span></span>
+<span id="cb6-7"><a href="accesing-the-data.html#cb6-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb6-8"><a href="accesing-the-data.html#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="accesing-the-data.html#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save</span>(countries, <span class="at">file =</span> rda_countries, <span class="at">compress =</span> <span class="st">&quot;xz&quot;</span>)</span>
+<span id="cb6-10"><a href="accesing-the-data.html#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="accesing-the-data.html#cb6-11" aria-hidden="true" tabindex="-1"></a>  countries</span>
+<span id="cb6-12"><a href="accesing-the-data.html#cb6-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb6-13"><a href="accesing-the-data.html#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">load</span>(rda_countries)</span>
+<span id="cb6-14"><a href="accesing-the-data.html#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="accesing-the-data.html#cb6-15" aria-hidden="true" tabindex="-1"></a>  countries</span>
+<span id="cb6-16"><a href="accesing-the-data.html#cb6-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## # A tibble: 249 × 6
+##    country_iso country_name_engli… country_fullname_engl… continent_id continent
+##    &lt;chr&gt;       &lt;chr&gt;               &lt;chr&gt;                         &lt;int&gt; &lt;chr&gt;    
+##  1 afg         Afghanistan         Afghanistan                       1 Asia     
+##  2 alb         Albania             Albania                           2 Europe   
+##  3 dza         Algeria             Algeria                           3 Africa   
+##  4 asm         American Samoa      American Samoa                    4 Oceania  
+##  5 and         Andorra             Andorra                           2 Europe   
+##  6 ago         Angola              Angola                            3 Africa   
+##  7 aia         Anguilla            Anguilla                          5 Americas 
+##  8 atg         Antigua and Barbuda Antigua and Barbuda               5 Americas 
+##  9 arg         Argentina           Argentina                         5 Americas 
+## 10 arm         Armenia             Armenia                           1 Asia     
+## # … with 239 more rows, and 1 more variable: eu28_member &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="accesing-the-data.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Commodities (no filter)</span></span>
+<span id="cb8-2"><a href="accesing-the-data.html#cb8-2" aria-hidden="true" tabindex="-1"></a>rda_commodities <span class="ot">&lt;-</span> <span class="st">&quot;commodities.rda&quot;</span></span>
+<span id="cb8-3"><a href="accesing-the-data.html#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="accesing-the-data.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(rda_commodities)) {</span>
+<span id="cb8-5"><a href="accesing-the-data.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  commodities <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">fromJSON</span>(</span>
+<span id="cb8-6"><a href="accesing-the-data.html#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;https://api.tradestatistics.io/commodities&quot;</span></span>
+<span id="cb8-7"><a href="accesing-the-data.html#cb8-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb8-8"><a href="accesing-the-data.html#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="accesing-the-data.html#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save</span>(commodities, <span class="at">file =</span> rda_commodities, <span class="at">compress =</span> <span class="st">&quot;xz&quot;</span>)</span>
+<span id="cb8-10"><a href="accesing-the-data.html#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="accesing-the-data.html#cb8-11" aria-hidden="true" tabindex="-1"></a>  commodities</span>
+<span id="cb8-12"><a href="accesing-the-data.html#cb8-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb8-13"><a href="accesing-the-data.html#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">load</span>(rda_commodities)</span>
+<span id="cb8-14"><a href="accesing-the-data.html#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="accesing-the-data.html#cb8-15" aria-hidden="true" tabindex="-1"></a>  commodities</span>
+<span id="cb8-16"><a href="accesing-the-data.html#cb8-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## # A tibble: 1,340 × 4
+##    commodity_code commodity_fullname_english       group_code group_fullname_en…
+##    &lt;chr&gt;          &lt;chr&gt;                            &lt;chr&gt;      &lt;chr&gt;             
+##  1 0101           Horses, asses, mules and hinnie… 01         Animals; live     
+##  2 0102           Bovine animals; live             01         Animals; live     
+##  3 0103           Swine; live                      01         Animals; live     
+##  4 0104           Sheep and goats; live            01         Animals; live     
+##  5 0105           Poultry; live, fowls of the spe… 01         Animals; live     
+##  6 0106           Animals, n.e.s. in chapter 01; … 01         Animals; live     
+##  7 0201           Meat of bovine animals; fresh o… 02         Meat and edible m…
+##  8 0202           Meat of bovine animals; frozen   02         Meat and edible m…
+##  9 0203           Meat of swine; fresh, chilled o… 02         Meat and edible m…
+## 10 0204           Meat of sheep or goats; fresh, … 02         Meat and edible m…
+## # … with 1,330 more rows</code></pre>
+<p>Please notice that these tables include some aliases.</p>
+<p><code>countries</code> includes some meta-codes, <code>c-xx</code> where <code>xx</code> must the first two letters of a continent and <code>all</code>, this is:</p>
+<pre><code>## # A tibble: 6 × 2
+##   Alias Meaning                                      
+##   &lt;chr&gt; &lt;chr&gt;                                        
+## 1 c-af  Alias for all valid ISO codes in Africa      
+## 2 c-am  Alias for all valid ISO codes in the Americas
+## 3 c-as  Alias for all valid ISO codes in Asia        
+## 4 c-eu  Alias for all valid ISO codes in Europe      
+## 5 c-oc  Alias for all valid ISO codes in Oceania     
+## 6 all   Alias for all valid ISO codes in the World</code></pre>
+<p><code>commodities</code> also includes some meta-codes, <code>xx</code> for the first two digits of a code and those digits are the commodity group and <code>all</code>, this is:</p>
+<pre><code>## # A tibble: 98 × 2
+##    Alias Meaning                                                                
+##    &lt;chr&gt; &lt;chr&gt;                                                                  
+##  1 01    Alias for all codes in the group Animals; live                         
+##  2 02    Alias for all codes in the group Meat and edible meat offal            
+##  3 03    Alias for all codes in the group Fish and crustaceans, molluscs and ot…
+##  4 04    Alias for all codes in the group Dairy produce; birds&#39; eggs; natural h…
+##  5 05    Alias for all codes in the group Animal originated products; not elsew…
+##  6 06    Alias for all codes in the group Trees and other plants, live; bulbs, …
+##  7 07    Alias for all codes in the group Vegetables and certain roots and tube…
+##  8 08    Alias for all codes in the group Fruit and nuts, edible; peel of citru…
+##  9 09    Alias for all codes in the group Coffee, tea, mate and spices          
+## 10 10    Alias for all codes in the group Cereals                               
+## # … with 88 more rows</code></pre>
+</div>
+<div id="api-parameters" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> API parameters</h3>
+<p>The tables provided withing our API contain at least one of these fields:</p>
+<ul>
+<li>Year (<code>y</code>)</li>
+<li>Reporter ISO (<code>r</code>)</li>
+<li>Partner ISO (<code>p</code>)</li>
+<li>Commodity Code (<code>c</code>)</li>
+</ul>
+<p>The most detailed table is <code>yrpc</code> that contains all bilateral flows at commodity level.</p>
+<p>With respect to <code>y</code> you can pass any integer contained in [1962,2020].</p>
+<p>Both <code>r</code> and <code>p</code> accept any valid ISO code or alias contained in the <a href="https://api.tradestatistics.io/countries">countries</a> table. For example, both <code>chl</code> (valid ISO code) and <code>c-am</code> (continent Americas, an alias) are valid API filtering parameters.</p>
+<p><code>c</code> takes any valid commodity code or alias from the <a href="https://api.tradestatistics.io/commodities">commodities</a>. For example, both <code>0101</code> (valid HS commodity code) and <code>01</code> (valid HS group code) are valid API filtering parameters.</p>
+<p>By default the API takes <code>c = "all"</code> by default.</p>
+<p>You can always skip <code>c</code>, but <code>y</code>, <code>r</code> and <code>p</code> are required to return data.</p>
+</div>
+<div id="available-reporters" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Available reporters</h3>
+<p>The only applicable filter is by year.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="accesing-the-data.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Available reporters (filter by year)</span></span>
+<span id="cb12-2"><a href="accesing-the-data.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(<span class="fu">fromJSON</span>(</span>
+<span id="cb12-3"><a href="accesing-the-data.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://api.tradestatistics.io/reporters?y=2018&quot;</span></span>
+<span id="cb12-4"><a href="accesing-the-data.html#cb12-4" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
+<pre><code>## # A tibble: 158 × 1
+##    reporter_iso 
+##    &lt;chr&gt;        
+##  1 0-unspecified
+##  2 abw          
+##  3 afg          
+##  4 ago          
+##  5 alb          
+##  6 and          
+##  7 are          
+##  8 arg          
+##  9 arm          
+## 10 atg          
+## # … with 148 more rows</code></pre>
+</div>
+<div id="yrpc-year-reporter-partner-and-commodity-code" class="section level3" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> YRPC (Year, Reporter, Partner and Commodity Code)</h3>
+<p>The applicable filters here are year, reporter, partner and commodity code.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="accesing-the-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Year - Reporter - Partner - Commodity Code</span></span>
+<span id="cb14-2"><a href="accesing-the-data.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="accesing-the-data.html#cb14-3" aria-hidden="true" tabindex="-1"></a>yrpc <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">fromJSON</span>(</span>
+<span id="cb14-4"><a href="accesing-the-data.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://api.tradestatistics.io/yrpc?y=2018&amp;r=usa&amp;p=mex&amp;c=8703&quot;</span></span>
+<span id="cb14-5"><a href="accesing-the-data.html#cb14-5" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb14-6"><a href="accesing-the-data.html#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="accesing-the-data.html#cb14-7" aria-hidden="true" tabindex="-1"></a>yrpc</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 6
+##   year  reporter_iso partner_iso commodity_code trade_value_usd_exp
+##   &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;                        &lt;dbl&gt;
+## 1 2018  usa          mex         8703                    2883606299
+## # … with 1 more variable: trade_value_usd_imp &lt;dbl&gt;</code></pre>
+<p>Columns definition:</p>
+<ul>
+<li><code>reporter_iso</code>: Official ISO-3 code for the reporter (e.g. the country that reports X dollars in exports/imports from/to country Y)</li>
+<li><code>partner_iso</code>: Official ISO-3 code for the partner</li>
+<li><code>commodity_code</code>: Official Harmonized System rev. 1992 (HS92) commodity code (e.g. according to the  table in the API, 8703 stands for “Motor cars and other motor vehicles; principally designed for the transport of persons (other than those of heading no. 8702), including station wagons and racing cars”)</li>
+<li><code>export_value_usd</code>: Exports measured in nominal United States Dollars (USD)</li>
+<li><code>import_value_usd</code>: Imports measured in nominal United States Dollars (USD)</li>
+</ul>
+</div>
+<div id="yrc-year-reporter-and-commodity-code" class="section level3" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> YRC (Year, Reporter and Commodity Code)</h3>
+<p>The only applicable filter is by year, reporter and commodity code.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="accesing-the-data.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Year - Reporter - Commodity Code</span></span>
+<span id="cb16-2"><a href="accesing-the-data.html#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="accesing-the-data.html#cb16-3" aria-hidden="true" tabindex="-1"></a>yrc <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">fromJSON</span>(</span>
+<span id="cb16-4"><a href="accesing-the-data.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://api.tradestatistics.io/yrc?y=2018&amp;r=chl&quot;</span></span>
+<span id="cb16-5"><a href="accesing-the-data.html#cb16-5" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb16-6"><a href="accesing-the-data.html#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="accesing-the-data.html#cb16-7" aria-hidden="true" tabindex="-1"></a>yrc</span></code></pre></div>
+<pre><code>## # A tibble: 1,199 × 5
+##    year  reporter_iso commodity_code trade_value_usd_exp trade_value_usd_imp
+##    &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;                        &lt;dbl&gt;               &lt;dbl&gt;
+##  1 2018  chl          0101                       6394932             8809619
+##  2 2018  chl          0102                        505423               12140
+##  3 2018  chl          0103                         18500             1241532
+##  4 2018  chl          0105                             0             5430990
+##  5 2018  chl          0106                       1569353             1255946
+##  6 2018  chl          0201                       5845018           965194917
+##  7 2018  chl          0202                      34881935           123568194
+##  8 2018  chl          0203                     438007756           168831581
+##  9 2018  chl          0204                      34683313                   0
+## 10 2018  chl          0206                      52906487             3607658
+## # … with 1,189 more rows</code></pre>
+</div>
+<div id="yrp-year-reporter-and-partner" class="section level3" number="3.2.7">
+<h3><span class="header-section-number">3.2.7</span> YRP (Year, Reporter and Partner)</h3>
+<p>The only applicable filter is by year, reporter and partner.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="accesing-the-data.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Year - Reporter - Partner</span></span>
+<span id="cb18-2"><a href="accesing-the-data.html#cb18-2" aria-hidden="true" tabindex="-1"></a>yrp <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">fromJSON</span>(</span>
+<span id="cb18-3"><a href="accesing-the-data.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://api.tradestatistics.io/yrp?y=2018&amp;r=chl&amp;p=arg&quot;</span></span>
+<span id="cb18-4"><a href="accesing-the-data.html#cb18-4" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb18-5"><a href="accesing-the-data.html#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="accesing-the-data.html#cb18-6" aria-hidden="true" tabindex="-1"></a>yrp</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 5
+##   year  reporter_iso partner_iso trade_value_usd_exp trade_value_usd_imp
+##   &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;                     &lt;int&gt;               &lt;dbl&gt;
+## 1 2018  chl          arg                   798364570          3402319822</code></pre>
+</div>
+<div id="yc-year-and-commodity-code" class="section level3" number="3.2.8">
+<h3><span class="header-section-number">3.2.8</span> YC (Year and Commodity Code)</h3>
+<p>The only applicable filter is by year and commodity code.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="accesing-the-data.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Year - Commodity Code</span></span>
+<span id="cb20-2"><a href="accesing-the-data.html#cb20-2" aria-hidden="true" tabindex="-1"></a>yc <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">fromJSON</span>(</span>
+<span id="cb20-3"><a href="accesing-the-data.html#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://api.tradestatistics.io/yc?y=2018&amp;c=0101&quot;</span></span>
+<span id="cb20-4"><a href="accesing-the-data.html#cb20-4" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb20-5"><a href="accesing-the-data.html#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="accesing-the-data.html#cb20-6" aria-hidden="true" tabindex="-1"></a>yc</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##   year  commodity_code trade_value_usd_exp trade_value_usd_imp
+##   &lt;chr&gt; &lt;chr&gt;                        &lt;dbl&gt;               &lt;dbl&gt;
+## 1 2018  0101                    2738929567          2818410753</code></pre>
+</div>
+<div id="yr-year-and-reporter" class="section level3" number="3.2.9">
+<h3><span class="header-section-number">3.2.9</span> YR (Year and Reporter)</h3>
+<p>The only applicable filter is by year and reporter.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="accesing-the-data.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Year - Reporter</span></span>
+<span id="cb22-2"><a href="accesing-the-data.html#cb22-2" aria-hidden="true" tabindex="-1"></a>yr <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">fromJSON</span>(</span>
+<span id="cb22-3"><a href="accesing-the-data.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://api.tradestatistics.io/yr?y=2018&amp;r=chl&quot;</span></span>
+<span id="cb22-4"><a href="accesing-the-data.html#cb22-4" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb22-5"><a href="accesing-the-data.html#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="accesing-the-data.html#cb22-6" aria-hidden="true" tabindex="-1"></a>yr</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##   year  reporter_iso trade_value_usd_exp trade_value_usd_imp
+##   &lt;chr&gt; &lt;chr&gt;                      &lt;dbl&gt;               &lt;dbl&gt;
+## 1 2018  chl                  75481701221         74170571978</code></pre>
+</div>
+</div>
+<div id="r-package" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> R Package</h2>
+<p>To ease API using, we provide an <a href="https://ropensci.github.io/tradestatistics/">R Package</a>. This package is a part of <a href="https://ropensci.org/">ROpenSci</a> and its documentation is available on a separate <a href="https://ropensci.github.io/tradestatistics/">pkgdown site</a>.</p>
+<p>Here’s what the package does:</p>
+<div class="figure"><span id="fig:unnamed-chunk-8"></span>
+<img src="fig/data-diagram.svg" alt="R package flow"  />
+<p class="caption">
+Figure 3.1: R package flow
+</p>
+</div>
+</div>
+<div id="dashboard-beta" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Dashboard (beta)</h2>
+<p>To ease API using, we provide a <a href="https://shiny.tradestatistics.io/">Shiny Dashboard</a> that is still under improvements.</p>
+</div>
+<div id="apache-arrow-datasets" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Apache Arrow datasets</h2>
+<p>The same data used for the dashboard can be accessed from a public DigitalOcean Space: <a href="https://tradestatistics.ams3.digitaloceanspaces.com" class="uri">https://tradestatistics.ams3.digitaloceanspaces.com</a>. This can be used, for example, with <a href="https://rclone.org/">rclone</a>:</p>
+<pre><code>rclone sync spaces:tradestatistics/hs-rev1992-visualization hs-rev1992-visualization</code></pre>
+<p>Please check the <a href="https://tradestatistics.io/md5sums.txt">md5sums</a> to verify data integrity after downloading.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-processing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

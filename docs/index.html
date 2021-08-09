@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Open Trade Statistics</title>
+  <meta name="description" content="Open Trade Statistics" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Open Trade Statistics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://docs.tradestatistics.io" />
+  
+  
+  <meta name="github-repo" content="tradestatistics/documentation" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Open Trade Statistics" />
+  
+  
+  
+
+<meta name="author" content="Pachá (Mauricio Vargas Sepúlveda)" />
+
+
+<meta name="date" content="2021-08-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="data-processing.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Table of Contents</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#project-goals"><i class="fa fa-check"></i><b>1.1</b> Project goals</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data-sources-and-availability"><i class="fa fa-check"></i><b>1.2</b> Data sources and availability</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>1.3</b> Code of Conduct</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#open-source-sponsorships"><i class="fa fa-check"></i><b>1.4</b> Open Source Sponsorships</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-processing.html"><a href="data-processing.html"><i class="fa fa-check"></i><b>2</b> Data processing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-processing.html"><a href="data-processing.html#tidy-data"><i class="fa fa-check"></i><b>2.1</b> Tidy Data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-processing.html"><a href="data-processing.html#data-cleaning"><i class="fa fa-check"></i><b>2.2</b> Data cleaning</a></li>
+<li class="chapter" data-level="2.3" data-path="data-processing.html"><a href="data-processing.html#github-repositories"><i class="fa fa-check"></i><b>2.3</b> GitHub repositories</a></li>
+<li class="chapter" data-level="2.4" data-path="data-processing.html"><a href="data-processing.html#coding-style-and-performant-code"><i class="fa fa-check"></i><b>2.4</b> Coding style and performant code</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="accesing-the-data.html"><a href="accesing-the-data.html"><i class="fa fa-check"></i><b>3</b> Accesing the data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="accesing-the-data.html"><a href="accesing-the-data.html#before-downloading-datasets"><i class="fa fa-check"></i><b>3.1</b> Before downloading datasets</a></li>
+<li class="chapter" data-level="3.2" data-path="accesing-the-data.html"><a href="accesing-the-data.html#api"><i class="fa fa-check"></i><b>3.2</b> API</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="accesing-the-data.html"><a href="accesing-the-data.html#available-tables"><i class="fa fa-check"></i><b>3.2.1</b> Available tables</a></li>
+<li class="chapter" data-level="3.2.2" data-path="accesing-the-data.html"><a href="accesing-the-data.html#metadata"><i class="fa fa-check"></i><b>3.2.2</b> Metadata</a></li>
+<li class="chapter" data-level="3.2.3" data-path="accesing-the-data.html"><a href="accesing-the-data.html#api-parameters"><i class="fa fa-check"></i><b>3.2.3</b> API parameters</a></li>
+<li class="chapter" data-level="3.2.4" data-path="accesing-the-data.html"><a href="accesing-the-data.html#available-reporters"><i class="fa fa-check"></i><b>3.2.4</b> Available reporters</a></li>
+<li class="chapter" data-level="3.2.5" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yrpc-year-reporter-partner-and-commodity-code"><i class="fa fa-check"></i><b>3.2.5</b> YRPC (Year, Reporter, Partner and Commodity Code)</a></li>
+<li class="chapter" data-level="3.2.6" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yrc-year-reporter-and-commodity-code"><i class="fa fa-check"></i><b>3.2.6</b> YRC (Year, Reporter and Commodity Code)</a></li>
+<li class="chapter" data-level="3.2.7" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yrp-year-reporter-and-partner"><i class="fa fa-check"></i><b>3.2.7</b> YRP (Year, Reporter and Partner)</a></li>
+<li class="chapter" data-level="3.2.8" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yc-year-and-commodity-code"><i class="fa fa-check"></i><b>3.2.8</b> YC (Year and Commodity Code)</a></li>
+<li class="chapter" data-level="3.2.9" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yr-year-and-reporter"><i class="fa fa-check"></i><b>3.2.9</b> YR (Year and Reporter)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="accesing-the-data.html"><a href="accesing-the-data.html#r-package"><i class="fa fa-check"></i><b>3.3</b> R Package</a></li>
+<li class="chapter" data-level="3.4" data-path="accesing-the-data.html"><a href="accesing-the-data.html#dashboard-beta"><i class="fa fa-check"></i><b>3.4</b> Dashboard (beta)</a></li>
+<li class="chapter" data-level="3.5" data-path="accesing-the-data.html"><a href="accesing-the-data.html#apache-arrow-datasets"><i class="fa fa-check"></i><b>3.5</b> Apache Arrow datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
+<li class="divider"></li>
+<li>
+  <a href="https://www.digitalocean.com/">
+    <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/PoweredByDO/DO_Powered_by_Badge_blue.svg" width="201px">
+  </a>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Open Trade Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Open Trade Statistics</h1>
+<p class="author"><em>Pachá (Mauricio Vargas Sepúlveda)</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-08-09</em></p>
+</div>
+<div id="about" class="section level1" number="1">
+<h1><span class="header-section-number">Section 1</span> About</h1>
+<div id="project-goals" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Project goals</h2>
+<p>Open Trade Statistics is an independent project that values reproducible research and provides tidy trade data. This project advocates for openness and collaboration, so the contribution is focused on:</p>
+<ul>
+<li>Releasing all the source code on <a href="https://github.com/tradestatistics">GitHub</a></li>
+<li>Sharing curated data (direct download and API)</li>
+<li>Pull requests and new ideas are always welcome</li>
+</ul>
+<p>The ultimate goal of this project is to ease data analysis and promote a reproducibility culture. You can contact me at <code>mavargas11@uc.cl</code>.</p>
+</div>
+<div id="data-sources-and-availability" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Data sources and availability</h2>
+<p>All of the product data shown on the OTS site is classified using either SITC (Standard International Trade Classification) or HS (Harmonized System), the raw data was obtained from <a href="http://comtrade.un.org/">UN COMTRADE</a> and its under their authorization that we share claned versions of the original raw datasets.</p>
+<p>We used different trade classifications according to the data availability.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Classification</th>
+<th>Availability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>HS rev 1992</td>
+<td>1988 – 2020</td>
+</tr>
+<tr class="even">
+<td>SITC rev 2</td>
+<td>1976 – 1976</td>
+</tr>
+<tr class="odd">
+<td>SITC rev 1</td>
+<td>1962 – 1976</td>
+</tr>
+</tbody>
+</table>
+<p>These datasets were used all together in order to create a unified data series for the period 1962-2017 with all products classified under HS rev 2007.</p>
+<p>To adjust for inflation (see the details in the R package), I also obtained GDP and inflation data from the World Bank.</p>
+</div>
+<div id="code-of-conduct" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Code of Conduct</h2>
+<p>Before you proceed to download the data, please read this carefully.</p>
+<p>No matter your gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion (or lack thereof), or technology choices you are able to use this data for any non-commercial purpose, including academic.</p>
+<p>Our software is released under Apache 2.0 license but all the data is under Creative Commons
+Attribution-NonCommercial 4.0 International License.</p>
+<p>Commercial purposes are strictly out of the boundaries of what you can do with this data according to <a href="https://comtrade.un.org/db/help/PolicyOnUseAndRedissemination.pdf">UN Comtrade dissemination clauses</a>.</p>
+<p>Except where otherwise noted, content on this site is licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons BY-NC 4.0 License</a>. Besides CC-BY-NC, when downloading datasets you also agree to the usage conditions explained both to <a href="https://comtrade.un.org/db/help/licenseagreement.aspx">UN Comtrade Online Usage Agreement</a>.</p>
+<p>The dashboard and R package are released under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License v3.0</a>, which follow the license recommendations from <a href="https://www.r-project.org/Licenses/">The R Project</a>.</p>
+</div>
+<div id="open-source-sponsorships" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Open Source Sponsorships</h2>
+<p>This project is hosted on <a href="https://digitalocean.com">DigitalOcean</a> as a part of the Open Source Sponsorships. If you register with this <a href="https://m.do.co/c/6119f0430dad">link</a>, you’ll get free credits to try DigitalOcean and we also get credits for the project:</p>
+<pre><code>Referral Link
+https://m.do.co/c/6119f0430dad</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="data-processing.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
