@@ -223,4 +223,5 @@ The same data used for the dashboard can be accessed from a public DigitalOcean 
 rclone sync spaces:tradestatistics/hs-rev1992-visualization hs-rev1992-visualization
 ```
 
+<!-- uodate with: find ~/hs-rev1992-visualization/* -type f -print0 | xargs -0 md5sum > ~/md5sums.txt -->
 Please check the [md5sums](https://tradestatistics.io/md5sums.txt) to verify data integrity after downloading.
