@@ -365,6 +365,6 @@ However, it's maybe more efficient to sync from this DigitalOcean Space: https:/
 ```
 rclone sync spaces:tradestatistics/hs92-visualization hs92-visualization
 ```
-And also check the [md5sums](https://tradestatistics.io/hs92-visualization-spaces-md5sums.txt)
+And also check the [md5sums](https://tradestatistics.io/hs92-visualization-spaces-md5sums.txt) if you sync from DO Spaces.
 <!-- update with: find ~/hs-rev1992-visualization/* -type f -print0 | xargs -0 md5sum > ~/md5sums.txt -->
 
