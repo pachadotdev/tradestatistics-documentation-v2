@@ -15,8 +15,14 @@ In order to ease data processing (i.e. obtaining trade balance, rankings, etc.) 
 
 1. The data considers an aggregation level of four digits in the Harmonized System
 2. All the observations before 1988 were converted from SITC rev 1 and 2 to HS rev 1992
-3. There is one column for exports and one for imports, respecting that one column is in FOB units and the other in CIF units
-4. A full join operation was performed, where missing or non-existing flows are replaced by zero values
+3. For each year, paste the series, group by reporter, partner and commodity and take the maximum export/import value
+4. There is one column for exports and one for imports, respecting that one column is in FOB units and the other in CIF units
+5. A full join operation was performed, where missing or non-existing flows are replaced by zero values
+
+The third point hass some details:
+
+3.1. Before 1976 I took converted SITC rev 1 data, before 1988 converted SITC rev 1 and 2, and since then SITC rev 1,2 and HS rev 92 because of data availability
+3.2. This fills gaps in the data, for example if a country hasn't implemented HS rev 92 by 1995, then it would figure as unavailable in the HS data but we also have SITC rev 1 and 2 to add the missing information
 
 ## GitHub repositories
 

@@ -263,7 +263,7 @@ yrc
 ```
 
 ```
-## # A tibble: 1,199 × 5
+## # A tibble: 1,207 × 5
 ##    year  reporter_iso commodity_code trade_value_usd_exp trade_value_usd_imp
 ##    <chr> <chr>        <chr>                        <dbl>               <dbl>
 ##  1 2018  chl          0101                       6394932             8809619
@@ -271,12 +271,12 @@ yrc
 ##  3 2018  chl          0103                         18500             1241532
 ##  4 2018  chl          0105                             0             5430990
 ##  5 2018  chl          0106                       1569353             1255946
-##  6 2018  chl          0201                       5845018           965194917
+##  6 2018  chl          0201                      40726955          1088763116
 ##  7 2018  chl          0202                      34881935           123568194
 ##  8 2018  chl          0203                     438007756           168831581
 ##  9 2018  chl          0204                      34683313                   0
 ## 10 2018  chl          0206                      52906487             3607658
-## # … with 1,189 more rows
+## # … with 1,197 more rows
 ```
 
 ### YRP (Year, Reporter and Partner)
@@ -297,7 +297,7 @@ yrp
 ## # A tibble: 1 × 5
 ##   year  reporter_iso partner_iso trade_value_usd_exp trade_value_usd_imp
 ##   <chr> <chr>        <chr>                     <int>               <dbl>
-## 1 2018  chl          arg                   798364570          3402319822
+## 1 2018  chl          arg                  1004446750          3664898260
 ```
 
 ### YC (Year and Commodity Code)
@@ -339,7 +339,7 @@ yr
 ## # A tibble: 1 × 4
 ##   year  reporter_iso trade_value_usd_exp trade_value_usd_imp
 ##   <chr> <chr>                      <dbl>               <dbl>
-## 1 2018  chl                  75481701221         74170571978
+## 1 2018  chl                  94429692300         87054036525
 ```
 
 ## R Package
@@ -359,9 +359,4 @@ To ease API using, we provide a [Shiny Dashboard](https://shiny.tradestatistics.
 
 ## Apache Arrow datasets
 
-The same data used for the dashboard can be accessed from a public DigitalOcean Space: https://tradestatistics.ams3.digitaloceanspaces.com. This can be used, for example, with [rclone](https://rclone.org/):
-```
-rclone sync spaces:tradestatistics/hs-rev1992-visualization hs-rev1992-visualization
-```
-
-Please check the [md5sums](https://tradestatistics.io/md5sums.txt) to verify data integrity after downloading.
+This [zip](https://tradestatistics.io/hs92-visualization.zip) contains all the arrow datasets used to run the API and dashboard. Please check the [md5sums](https://tradestatistics.io/hs92-visualization-md5sum.txt) to verify data integrity after downloading.

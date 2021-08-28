@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 3 Accesing the data | Open Trade Statistics</title>
   <meta name="description" content="Section 3 Accesing the data | Open Trade Statistics" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 3 Accesing the data | Open Trade Statistics" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Pachá (Mauricio Vargas Sepúlveda)" />
 
 
-<meta name="date" content="2021-08-09" />
+<meta name="date" content="2021-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,8 @@
   
 <link rel="prev" href="data-processing.html"/>
 <link rel="next" href="references.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -415,7 +415,7 @@ div.csl-indent {
 <span id="cb16-5"><a href="accesing-the-data.html#cb16-5" aria-hidden="true" tabindex="-1"></a>))</span>
 <span id="cb16-6"><a href="accesing-the-data.html#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-7"><a href="accesing-the-data.html#cb16-7" aria-hidden="true" tabindex="-1"></a>yrc</span></code></pre></div>
-<pre><code>## # A tibble: 1,199 × 5
+<pre><code>## # A tibble: 1,207 × 5
 ##    year  reporter_iso commodity_code trade_value_usd_exp trade_value_usd_imp
 ##    &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;                        &lt;dbl&gt;               &lt;dbl&gt;
 ##  1 2018  chl          0101                       6394932             8809619
@@ -423,12 +423,12 @@ div.csl-indent {
 ##  3 2018  chl          0103                         18500             1241532
 ##  4 2018  chl          0105                             0             5430990
 ##  5 2018  chl          0106                       1569353             1255946
-##  6 2018  chl          0201                       5845018           965194917
+##  6 2018  chl          0201                      40726955          1088763116
 ##  7 2018  chl          0202                      34881935           123568194
 ##  8 2018  chl          0203                     438007756           168831581
 ##  9 2018  chl          0204                      34683313                   0
 ## 10 2018  chl          0206                      52906487             3607658
-## # … with 1,189 more rows</code></pre>
+## # … with 1,197 more rows</code></pre>
 </div>
 <div id="yrp-year-reporter-and-partner" class="section level3" number="3.2.7">
 <h3><span class="header-section-number">3.2.7</span> YRP (Year, Reporter and Partner)</h3>
@@ -442,7 +442,7 @@ div.csl-indent {
 <pre><code>## # A tibble: 1 × 5
 ##   year  reporter_iso partner_iso trade_value_usd_exp trade_value_usd_imp
 ##   &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;                     &lt;int&gt;               &lt;dbl&gt;
-## 1 2018  chl          arg                   798364570          3402319822</code></pre>
+## 1 2018  chl          arg                  1004446750          3664898260</code></pre>
 </div>
 <div id="yc-year-and-commodity-code" class="section level3" number="3.2.8">
 <h3><span class="header-section-number">3.2.8</span> YC (Year and Commodity Code)</h3>
@@ -470,14 +470,14 @@ div.csl-indent {
 <pre><code>## # A tibble: 1 × 4
 ##   year  reporter_iso trade_value_usd_exp trade_value_usd_imp
 ##   &lt;chr&gt; &lt;chr&gt;                      &lt;dbl&gt;               &lt;dbl&gt;
-## 1 2018  chl                  75481701221         74170571978</code></pre>
+## 1 2018  chl                  94429692300         87054036525</code></pre>
 </div>
 </div>
 <div id="r-package" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> R Package</h2>
 <p>To ease API using, we provide an <a href="https://ropensci.github.io/tradestatistics/">R Package</a>. This package is a part of <a href="https://ropensci.org/">ROpenSci</a> and its documentation is available on a separate <a href="https://ropensci.github.io/tradestatistics/">pkgdown site</a>.</p>
 <p>Here’s what the package does:</p>
-<div class="figure"><span id="fig:unnamed-chunk-8"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
 <img src="fig/data-diagram.svg" alt="R package flow"  />
 <p class="caption">
 Figure 3.1: R package flow
@@ -490,9 +490,7 @@ Figure 3.1: R package flow
 </div>
 <div id="apache-arrow-datasets" class="section level2" number="3.5">
 <h2><span class="header-section-number">3.5</span> Apache Arrow datasets</h2>
-<p>The same data used for the dashboard can be accessed from a public DigitalOcean Space: <a href="https://tradestatistics.ams3.digitaloceanspaces.com" class="uri">https://tradestatistics.ams3.digitaloceanspaces.com</a>. This can be used, for example, with <a href="https://rclone.org/">rclone</a>:</p>
-<pre><code>rclone sync spaces:tradestatistics/hs-rev1992-visualization hs-rev1992-visualization</code></pre>
-<p>Please check the <a href="https://tradestatistics.io/md5sums.txt">md5sums</a> to verify data integrity after downloading.</p>
+<p>This <a href="https://tradestatistics.io/hs92-visualization.zip">zip</a> contains all the arrow datasets used to run the API and dashboard. Please check the <a href="https://tradestatistics.io/hs92-visualization-md5sum.txt">md5sums</a> to verify data integrity after downloading.</p>
 
 </div>
 </div>
@@ -546,6 +544,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
