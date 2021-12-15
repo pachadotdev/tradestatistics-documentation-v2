@@ -7,7 +7,7 @@ documentclass: book
 bibliography: [references.bib]
 link-citations: yes
 url: 'https\://docs.tradestatistics.io'
-github-repo: tradestatistics/documentation
+github-repo: tradestatistics/documentation-v2
 ---
 
 # About
@@ -30,11 +30,10 @@ We used different trade classifications according to the data availability.
 
 |Classification |Availability|
 |---------------|------------|
-|HS rev 1992    |1988 – 2020 |
-|SITC rev 2     |1976 – 1976 |
-|SITC rev 1     |1962 – 1976 |
+|HS rev 2002    |2002 - 2011 |
+|HS rev 2012    |2012 - 2020 |
 
-These datasets were used all together in order to create a unified data series for the period 1962-2017 with all products classified under HS rev 2007.
+These datasets were used all together in order to create a unified data series for the period 2002-2020 with all products classified under HS rev 2012.
 
 To adjust for inflation (see the details in the R package), I also obtained GDP and inflation data from the World Bank.
 

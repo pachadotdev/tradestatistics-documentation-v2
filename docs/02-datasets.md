@@ -6,7 +6,7 @@ If you are going to download data, you have to read the [Code of Conduct](https:
 
 ## API
 
-*Since Aug 2021 the API features an interactive page https://api.tradestatistics.io/__docs__/.*
+*Since Dec 2021 the API features an interactive page https://api.tradestatistics.io/__docs__/.*
 
 The advantage of the API over https download is that you can filter what to obtain and also access some additional tables.
 
@@ -35,23 +35,28 @@ as_tibble(fromJSON("https://api.tradestatistics.io/tables"))
 ```
 
 ```
-## # A tibble: 14 × 3
-##    table                   description                  source                  
-##    <chr>                   <chr>                        <chr>                   
-##  1 countries               Countries metadata           UN Comtrade (with modif…
-##  2 reporters               Reporters for a given year   UN Comtrade (with modif…
-##  3 partners                Partners for a given year    UN Comtrade (with modif…
-##  4 commodities             Commodities metadata         Center for Internationa…
-##  5 commodities_shortnames  Commodities short names      Center for Internationa…
-##  6 commodities_communities Commodities communities      Open Trade Statistics   
-##  7 yrpc                    Reporter-Partner trade at c… Open Trade Statistics   
-##  8 yrp                     Reporter-Partner trade at a… Open Trade Statistics   
-##  9 yrc                     Reporter trade at commodity… Open Trade Statistics   
-## 10 yr                      Reporter trade at aggregate… Open Trade Statistics   
-## 11 yr-communities          Reporter trade at commodity… Open Trade Statistics   
-## 12 yr-groups               Reporter trade at commodity… Open Trade Statistics   
-## 13 yc                      Commodity trade at detailed… Open Trade Statistics   
-## 14 years                   Minimum and maximum years w… Open Trade Statistics
+## # A tibble: 19 × 3
+##    table             description                            source              
+##    <chr>             <chr>                                  <chr>               
+##  1 countries         Countries metadata                     UN Comtrade (with m…
+##  2 reporters         Reporters for a given year             UN Comtrade (with m…
+##  3 partners          Partners for a given year              UN Comtrade (with m…
+##  4 commodities       Commodities metadata                   Open Trade Statisti…
+##  5 yrpc              Reporter-Partner trade at commodity l… Open Trade Statisti…
+##  6 yrpc-imputed      Reporter-Partner trade at commodity l… Open Trade Statisti…
+##  7 yrp               Reporter-Partner trade at aggregated … Open Trade Statisti…
+##  8 yrp-imputed       Reporter-Partner trade at aggregated … Open Trade Statisti…
+##  9 yrc               Reporter trade at commodity level (Ye… Open Trade Statisti…
+## 10 yrc-imputed       Reporter trade at commodity level, im… Open Trade Statisti…
+## 11 yr                Reporter trade at aggregated level (Y… Open Trade Statisti…
+## 12 yr-imputed        Reporter trade at aggregated level, i… Open Trade Statisti…
+## 13 yr-groups         Reporter trade at commodity group lev… Open Trade Statisti…
+## 14 yr-groups-imputed Reporter trade at commodity group lev… Open Trade Statisti…
+## 15 yc                Commodity trade at detailed level (Ye… Open Trade Statisti…
+## 16 yc-imputed        Commodity trade at detailed level, im… Open Trade Statisti…
+## 17 years             Minimum and maximum years with availa… Open Trade Statisti…
+## 18 rtas              Regional Trade Agreements per pair of… Design of Trade Agr…
+## 19 tariffs           Most Favoured Nation tarrifs (Year, R… World Integrated Tr…
 ```
 
 ### Metadata
@@ -78,18 +83,18 @@ if (!file.exists(rda_countries)) {
 
 ```
 ## # A tibble: 249 × 6
-##    country_iso country_name_engli… country_fullname_engl… continent_id continent
-##    <chr>       <chr>               <chr>                         <int> <chr>    
-##  1 afg         Afghanistan         Afghanistan                       1 Asia     
-##  2 alb         Albania             Albania                           2 Europe   
-##  3 dza         Algeria             Algeria                           3 Africa   
-##  4 asm         American Samoa      American Samoa                    4 Oceania  
-##  5 and         Andorra             Andorra                           2 Europe   
-##  6 ago         Angola              Angola                            3 Africa   
-##  7 aia         Anguilla            Anguilla                          5 Americas 
-##  8 atg         Antigua and Barbuda Antigua and Barbuda               5 Americas 
-##  9 arg         Argentina           Argentina                         5 Americas 
-## 10 arm         Armenia             Armenia                           1 Asia     
+##    country_iso country_name_english country_fullname_eng… continent_id continent
+##    <chr>       <chr>                <chr>                        <int> <chr>    
+##  1 afg         Afghanistan          Afghanistan                      1 Asia     
+##  2 alb         Albania              Albania                          2 Europe   
+##  3 dza         Algeria              Algeria                          3 Africa   
+##  4 asm         American Samoa       American Samoa                   4 Oceania  
+##  5 and         Andorra              Andorra                          2 Europe   
+##  6 ago         Angola               Angola                           3 Africa   
+##  7 aia         Anguilla             Anguilla                         5 Americas 
+##  8 atg         Antigua and Barbuda  Antigua and Barbuda              5 Americas 
+##  9 arg         Argentina            Argentina                        5 Americas 
+## 10 arm         Armenia              Armenia                          1 Asia     
 ## # … with 239 more rows, and 1 more variable: eu28_member <int>
 ```
 
@@ -200,7 +205,7 @@ as_tibble(fromJSON(
 ```
 
 ```
-## # A tibble: 158 × 1
+## # A tibble: 151 × 1
 ##    reporter_iso 
 ##    <chr>        
 ##  1 0-unspecified
@@ -212,8 +217,8 @@ as_tibble(fromJSON(
 ##  7 are          
 ##  8 arg          
 ##  9 arm          
-## 10 atg          
-## # … with 148 more rows
+## 10 aus          
+## # … with 141 more rows
 ```
 
 ### YRPC (Year, Reporter, Partner and Commodity Code)
@@ -225,7 +230,7 @@ The applicable filters here are year, reporter, partner and commodity code.
 # Year - Reporter - Partner - Commodity Code
 
 yrpc <- as_tibble(fromJSON(
-  "https://api.tradestatistics.io/yrpc?y=2018&r=usa&p=mex&c=8703"
+  "https://api.tradestatistics.io/yrpc?y=2018&r=can&p=usa&c=010121"
 ))
 
 yrpc
@@ -233,10 +238,10 @@ yrpc
 
 ```
 ## # A tibble: 1 × 6
-##   year  reporter_iso partner_iso commodity_code trade_value_usd_exp
-##   <chr> <chr>        <chr>       <chr>                        <dbl>
-## 1 2018  usa          mex         8703                    2883606299
-## # … with 1 more variable: trade_value_usd_imp <dbl>
+##    year reporter_iso partner_iso commodity_code trade_value_usd_exp
+##   <int> <chr>        <chr>       <chr>                        <int>
+## 1  2018 can          usa         010121                     8893553
+## # … with 1 more variable: trade_value_usd_imp <int>
 ```
 
 Columns definition:
@@ -263,20 +268,20 @@ yrc
 ```
 
 ```
-## # A tibble: 1,207 × 5
-##    year  reporter_iso commodity_code trade_value_usd_exp trade_value_usd_imp
-##    <chr> <chr>        <chr>                        <dbl>               <dbl>
-##  1 2018  chl          0101                       6394932             8809619
-##  2 2018  chl          0102                        505423               12140
-##  3 2018  chl          0103                         18500             1241532
-##  4 2018  chl          0105                             0             5430990
-##  5 2018  chl          0106                       1569353             1255946
-##  6 2018  chl          0201                      40726955          1088763116
-##  7 2018  chl          0202                      34881935           123568194
-##  8 2018  chl          0203                     438007756           168831581
-##  9 2018  chl          0204                      34683313                   0
-## 10 2018  chl          0206                      52906487             3607658
-## # … with 1,197 more rows
+## # A tibble: 4,875 × 5
+##     year reporter_iso commodity_code trade_value_usd_exp trade_value_usd_imp
+##    <int> <chr>        <chr>                        <dbl>               <dbl>
+##  1  2018 chl          010121                     1030550             1392475
+##  2  2018 chl          010129                     5364382             7412974
+##  3  2018 chl          010130                           0                4170
+##  4  2018 chl          010229                      505423                   0
+##  5  2018 chl          010290                           0               12140
+##  6  2018 chl          010310                       18500             1241532
+##  7  2018 chl          010511                           0             5430990
+##  8  2018 chl          010613                      178030                   0
+##  9  2018 chl          010619                           0              290760
+## 10  2018 chl          010620                           0               58327
+## # … with 4,865 more rows
 ```
 
 ### YRP (Year, Reporter and Partner)
@@ -295,9 +300,9 @@ yrp
 
 ```
 ## # A tibble: 1 × 5
-##   year  reporter_iso partner_iso trade_value_usd_exp trade_value_usd_imp
-##   <chr> <chr>        <chr>                     <int>               <dbl>
-## 1 2018  chl          arg                  1004446750          3664898260
+##    year reporter_iso partner_iso trade_value_usd_exp trade_value_usd_imp
+##   <int> <chr>        <chr>                     <int>               <dbl>
+## 1  2018 chl          arg                   798364544          3402319774
 ```
 
 ### YC (Year and Commodity Code)
@@ -315,10 +320,10 @@ yc
 ```
 
 ```
-## # A tibble: 1 × 4
-##   year  commodity_code trade_value_usd_exp trade_value_usd_imp
-##   <chr> <chr>                        <dbl>               <dbl>
-## 1 2018  0101                    2738929567          2818410753
+## # A tibble: 1 × 3
+##   year  commodity_code                               observation                
+##   <chr> <chr>                                        <chr>                      
+## 1 2018  The specified commodity code is not a valid… No data available for thes…
 ```
 
 ### YR (Year and Reporter)
@@ -337,10 +342,14 @@ yr
 
 ```
 ## # A tibble: 1 × 4
-##   year  reporter_iso trade_value_usd_exp trade_value_usd_imp
-##   <chr> <chr>                      <dbl>               <dbl>
-## 1 2018  chl                  94429692300         87054036525
+##    year reporter_iso trade_value_usd_exp trade_value_usd_imp
+##   <int> <chr>                      <dbl>               <dbl>
+## 1  2018 chl                  75846695708         74197133855
 ```
+
+### Imputed tables
+
+Just append "-imputed" to the API calls. Example: `https://api.tradestatistics.io/yr-imputed?y=2018&r=chl`.
 
 ## R Package
 
@@ -361,10 +370,10 @@ To ease API using, we provide a [Shiny Dashboard](https://shiny.tradestatistics.
 
 This [zip](https://tradestatistics.io/hs92-visualization.zip) contains all the arrow datasets used to run the API and dashboard. Please check the [md5sum](https://tradestatistics.io/hs92-visualization-zip-md5sum.txt) to verify data integrity after downloading.
 
-However, it's maybe more efficient to sync from this DigitalOcean Space: https://tradestatistics.ams3.digitaloceanspaces.com. This can be used, for example, with [rclone](https://rclone.org/) by running the command
+All the arrow datasets used to run the API and dashboard can be downloaded from [DigitalOcean Spaces](https://tradestatistics.ams3.digitaloceanspaces.com). This can be used, for example, with [rclone](https://rclone.org/) by running the command
 ```
 rclone sync spaces:tradestatistics/hs92-visualization hs92-visualization
 ```
-And also check the [md5sums](https://tradestatistics.io/hs92-visualization-spaces-md5sums.txt) if you sync from DO Spaces.
-<!-- update with: find ~/hs-rev1992-visualization/* -type f -print0 | xargs -0 md5sum > ~/md5sums.txt -->
 
+Check the md5sums included in the file "md5sums.txt" within the download.
+<!-- update with: find ~/hs-rev1992-visualization/* -type f -print0 | xargs -0 md5sum > ~/md5sums.txt -->

@@ -9,7 +9,6 @@ data-processing
 tidy-data
 data-cleaning
 github-repositories
-coding-style-and-performant-code
 accesing-the-data
 before-downloading-datasets
 api
@@ -22,6 +21,7 @@ yrc-year-reporter-and-commodity-code
 yrp-year-reporter-and-partner
 yc-year-and-commodity-code
 yr-year-and-reporter
+imputed-tables
 r-package
 dashboard-beta
 apache-arrow-datasets

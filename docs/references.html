@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 4 References | Open Trade Statistics</title>
   <meta name="description" content="Section 4 References | Open Trade Statistics" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 4 References | Open Trade Statistics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://docs.tradestatistics.io" />
   
   
-  <meta name="github-repo" content="tradestatistics/documentation" />
+  <meta name="github-repo" content="tradestatistics/documentation-v2" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Section 4 References | Open Trade Statistics" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Pachá (Mauricio Vargas Sepúlveda)" />
 
 
-<meta name="date" content="2021-08-28" />
+<meta name="date" content="2021-12-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="accesing-the-data.html"/>
 
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -171,7 +171,6 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="data-processing.html"><a href="data-processing.html#tidy-data"><i class="fa fa-check"></i><b>2.1</b> Tidy Data</a></li>
 <li class="chapter" data-level="2.2" data-path="data-processing.html"><a href="data-processing.html#data-cleaning"><i class="fa fa-check"></i><b>2.2</b> Data cleaning</a></li>
 <li class="chapter" data-level="2.3" data-path="data-processing.html"><a href="data-processing.html#github-repositories"><i class="fa fa-check"></i><b>2.3</b> GitHub repositories</a></li>
-<li class="chapter" data-level="2.4" data-path="data-processing.html"><a href="data-processing.html#coding-style-and-performant-code"><i class="fa fa-check"></i><b>2.4</b> Coding style and performant code</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="accesing-the-data.html"><a href="accesing-the-data.html"><i class="fa fa-check"></i><b>3</b> Accesing the data</a>
 <ul>
@@ -187,6 +186,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.2.7" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yrp-year-reporter-and-partner"><i class="fa fa-check"></i><b>3.2.7</b> YRP (Year, Reporter and Partner)</a></li>
 <li class="chapter" data-level="3.2.8" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yc-year-and-commodity-code"><i class="fa fa-check"></i><b>3.2.8</b> YC (Year and Commodity Code)</a></li>
 <li class="chapter" data-level="3.2.9" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yr-year-and-reporter"><i class="fa fa-check"></i><b>3.2.9</b> YR (Year and Reporter)</a></li>
+<li class="chapter" data-level="3.2.10" data-path="accesing-the-data.html"><a href="accesing-the-data.html#imputed-tables"><i class="fa fa-check"></i><b>3.2.10</b> Imputed tables</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="accesing-the-data.html"><a href="accesing-the-data.html#r-package"><i class="fa fa-check"></i><b>3.3</b> R Package</a></li>
 <li class="chapter" data-level="3.4" data-path="accesing-the-data.html"><a href="accesing-the-data.html#dashboard-beta"><i class="fa fa-check"></i><b>3.4</b> Dashboard (beta)</a></li>
@@ -227,12 +227,6 @@ div.csl-indent {
 <div class="csl-entry">
 <div class="csl-left-margin">[2] </div><div class="csl-right-inline">H. Wickham and G. Grolemund, <em>R for data science: Import, tidy, transform, visualize, and model data</em>. O’Reilly Media, Inc., 2016.</div>
 </div>
-<div class="csl-entry">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">H. Wickham, <em>Advanced r</em>. CRC Press, 2014.</div>
-</div>
-<div class="csl-entry">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">R. Peng, S. Kross, and B. Anderson, <em>Mastering software development in <span>R</span></em>. Leanpub, 2017.</div>
-</div>
 </div>
 </div>
             </section>
@@ -245,7 +239,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -286,7 +279,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

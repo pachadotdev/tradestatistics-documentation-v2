@@ -1,6 +1,6 @@
 book_filename: "ots-documentation"
 chapter_name: "Section "
-repo: https://github.com/tradestatistics/documentation
+repo: https://github.com/tradestatistics/documentation-v2
 output_dir: "docs"
 rmd_files: ["index.Rmd", "01-processing.Rmd", "02-datasets.Rmd", "03-references.Rmd"]
 new_session: yes

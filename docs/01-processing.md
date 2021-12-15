@@ -11,29 +11,21 @@ The project follows Tidy Data principles exposed in [@tidydata2014] and  [@r4ds2
 
 ## Data cleaning
 
-In order to ease data processing (i.e. obtaining trade balance, rankings, etc.) the raw datasets from UN Comtrade were processed to create single tables where:
+In order to ease data processing (i.e. obtaining trade balance, rankings, etc.) the raw datasets from UN COMTRADE were processed to create single tables where:
 
-1. The data considers an aggregation level of four digits in the Harmonized System
-2. All the observations before 1988 were converted from SITC rev 1 and 2 to HS rev 1992
-3. For each year, paste the series, group by reporter, partner and commodity and take the maximum export/import value
-4. There is one column for exports and one for imports, respecting that one column is in FOB units and the other in CIF units
-5. A full join operation was performed, where missing or non-existing flows are replaced by zero values
-
-The third point hass some details:
-
-3.1. Before 1976 I took converted SITC rev 1 data, before 1988 converted SITC rev 1 and 2, and since then SITC rev 1,2 and HS rev 92 because of data availability
-3.2. This fills gaps in the data, for example if a country hasn't implemented HS rev 92 by 1995, then it would figure as unavailable in the HS data but we also have SITC rev 1 and 2 to add the missing information
+1. The data considers an aggregation level of six digits in the Harmonized System.
+2. All the observations before 2012 were converted from HS rev 2002 to HS rev 2012.
+3. There is one column for exports and one for imports, respecting that exports are expressed Free on Board (i.e. no transportation costs) and imports are expressed with Cost of Insurance and Freight.
+4. A full join operation was performed, where missing or non-existing flows are replaced by zero values.
+5. The data is offered the same as UN COMTRADE but tidy (i.e. there are reporters and partners that appear as "0-unspecified"). I also provide alternative tables where I removed transportation costs and mismatches by imputing around 10% of the observations with a gravity-type model and also removed flows with no attributed origin/destination.
 
 ## GitHub repositories
 
 * [Getting and cleaning data from UN Comtrade (OTS Yearly Data)](https://github.com/tradestatistics/uncomtrade-datasets-arrow)
-* [Creating historic HS92 series (OTS Visualization Data)](https://github.com/tradestatistics/hs92-historic-series)
+* [Creating historic HS12 series (OTS Visualization Data)](https://github.com/tradestatistics/hs12-historic-series)
+* [Creating imputed historic HS12 series (also OTS Visualization Data)](https://github.com/pachadotdev/baci-like-hs12)
 * [Inflation data (included in the R package)](https://github.com/tradestatistics/inflation-data)
+* [RTAs and Tariffs data (included in the API)](https://github.com/pachadotdev/rtas-and-tariffs)
 * [Shiny dashboard](https://github.com/tradestatistics/visualization-with-shiny)
 * [Plumber API](https://github.com/tradestatistics/plumber-api)
 * [Product and country codes from UN Comtrade (OTS Comtrade Codes)](https://github.com/tradestatistics/comtrade-codes)
-* [Scraping data from The Atlas of Economic Complexity (OTS Atlas Data)](https://github.com/tradestatistics/atlas-data)
-
-## Coding style and performant code
-
-I followed [Tidyverse Style Guide](http://style.tidyverse.org/), [@advancedr2014] and [@masteringsoftware2017].

@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 2 Data processing | Open Trade Statistics</title>
   <meta name="description" content="Section 2 Data processing | Open Trade Statistics" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 2 Data processing | Open Trade Statistics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://docs.tradestatistics.io" />
   
   
-  <meta name="github-repo" content="tradestatistics/documentation" />
+  <meta name="github-repo" content="tradestatistics/documentation-v2" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Section 2 Data processing | Open Trade Statistics" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Pachá (Mauricio Vargas Sepúlveda)" />
 
 
-<meta name="date" content="2021-08-28" />
+<meta name="date" content="2021-12-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="accesing-the-data.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -171,7 +171,6 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="data-processing.html"><a href="data-processing.html#tidy-data"><i class="fa fa-check"></i><b>2.1</b> Tidy Data</a></li>
 <li class="chapter" data-level="2.2" data-path="data-processing.html"><a href="data-processing.html#data-cleaning"><i class="fa fa-check"></i><b>2.2</b> Data cleaning</a></li>
 <li class="chapter" data-level="2.3" data-path="data-processing.html"><a href="data-processing.html#github-repositories"><i class="fa fa-check"></i><b>2.3</b> GitHub repositories</a></li>
-<li class="chapter" data-level="2.4" data-path="data-processing.html"><a href="data-processing.html#coding-style-and-performant-code"><i class="fa fa-check"></i><b>2.4</b> Coding style and performant code</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="accesing-the-data.html"><a href="accesing-the-data.html"><i class="fa fa-check"></i><b>3</b> Accesing the data</a>
 <ul>
@@ -187,6 +186,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.2.7" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yrp-year-reporter-and-partner"><i class="fa fa-check"></i><b>3.2.7</b> YRP (Year, Reporter and Partner)</a></li>
 <li class="chapter" data-level="3.2.8" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yc-year-and-commodity-code"><i class="fa fa-check"></i><b>3.2.8</b> YC (Year and Commodity Code)</a></li>
 <li class="chapter" data-level="3.2.9" data-path="accesing-the-data.html"><a href="accesing-the-data.html#yr-year-and-reporter"><i class="fa fa-check"></i><b>3.2.9</b> YR (Year and Reporter)</a></li>
+<li class="chapter" data-level="3.2.10" data-path="accesing-the-data.html"><a href="accesing-the-data.html#imputed-tables"><i class="fa fa-check"></i><b>3.2.10</b> Imputed tables</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="accesing-the-data.html"><a href="accesing-the-data.html#r-package"><i class="fa fa-check"></i><b>3.3</b> R Package</a></li>
 <li class="chapter" data-level="3.4" data-path="accesing-the-data.html"><a href="accesing-the-data.html#dashboard-beta"><i class="fa fa-check"></i><b>3.4</b> Dashboard (beta)</a></li>
@@ -231,33 +231,27 @@ Figure 2.1: Data pipeline
 </div>
 <div id="data-cleaning" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Data cleaning</h2>
-<p>In order to ease data processing (i.e. obtaining trade balance, rankings, etc.) the raw datasets from UN Comtrade were processed to create single tables where:</p>
+<p>In order to ease data processing (i.e. obtaining trade balance, rankings, etc.) the raw datasets from UN COMTRADE were processed to create single tables where:</p>
 <ol style="list-style-type: decimal">
-<li>The data considers an aggregation level of four digits in the Harmonized System</li>
-<li>All the observations before 1988 were converted from SITC rev 1 and 2 to HS rev 1992</li>
-<li>For each year, paste the series, group by reporter, partner and commodity and take the maximum export/import value</li>
-<li>There is one column for exports and one for imports, respecting that one column is in FOB units and the other in CIF units</li>
-<li>A full join operation was performed, where missing or non-existing flows are replaced by zero values</li>
+<li>The data considers an aggregation level of six digits in the Harmonized System.</li>
+<li>All the observations before 2012 were converted from HS rev 2002 to HS rev 2012.</li>
+<li>There is one column for exports and one for imports, respecting that exports are expressed Free on Board (i.e. no transportation costs) and imports are expressed with Cost of Insurance and Freight.</li>
+<li>A full join operation was performed, where missing or non-existing flows are replaced by zero values.</li>
+<li>The data is offered the same as UN COMTRADE but tidy (i.e. there are reporters and partners that appear as “0-unspecified”). I also provide alternative tables where I removed transportation costs and mismatches by imputing around 10% of the observations with a gravity-type model and also removed flows with no attributed origin/destination.</li>
 </ol>
-<p>The third point hass some details:</p>
-<p>3.1. Before 1976 I took converted SITC rev 1 data, before 1988 converted SITC rev 1 and 2, and since then SITC rev 1,2 and HS rev 92 because of data availability
-3.2. This fills gaps in the data, for example if a country hasn’t implemented HS rev 92 by 1995, then it would figure as unavailable in the HS data but we also have SITC rev 1 and 2 to add the missing information</p>
 </div>
 <div id="github-repositories" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> GitHub repositories</h2>
 <ul>
 <li><a href="https://github.com/tradestatistics/uncomtrade-datasets-arrow">Getting and cleaning data from UN Comtrade (OTS Yearly Data)</a></li>
-<li><a href="https://github.com/tradestatistics/hs92-historic-series">Creating historic HS92 series (OTS Visualization Data)</a></li>
+<li><a href="https://github.com/tradestatistics/hs12-historic-series">Creating historic HS12 series (OTS Visualization Data)</a></li>
+<li><a href="https://github.com/pachadotdev/baci-like-hs12">Creating imputed historic HS12 series (also OTS Visualization Data)</a></li>
 <li><a href="https://github.com/tradestatistics/inflation-data">Inflation data (included in the R package)</a></li>
+<li><a href="https://github.com/pachadotdev/rtas-and-tariffs">RTAs and Tariffs data (included in the API)</a></li>
 <li><a href="https://github.com/tradestatistics/visualization-with-shiny">Shiny dashboard</a></li>
 <li><a href="https://github.com/tradestatistics/plumber-api">Plumber API</a></li>
 <li><a href="https://github.com/tradestatistics/comtrade-codes">Product and country codes from UN Comtrade (OTS Comtrade Codes)</a></li>
-<li><a href="https://github.com/tradestatistics/atlas-data">Scraping data from The Atlas of Economic Complexity (OTS Atlas Data)</a></li>
 </ul>
-</div>
-<div id="coding-style-and-performant-code" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Coding style and performant code</h2>
-<p>I followed <a href="http://style.tidyverse.org/">Tidyverse Style Guide</a>, <span class="citation"><a href="#ref-advancedr2014" role="doc-biblioref">[3]</a></span> and <span class="citation"><a href="#ref-masteringsoftware2017" role="doc-biblioref">[4]</a></span>.</p>
 
 </div>
 </div>
@@ -268,12 +262,6 @@ Figure 2.1: Data pipeline
 </div>
 <div id="ref-r4ds2016" class="csl-entry">
 <div class="csl-left-margin">[2] </div><div class="csl-right-inline">H. Wickham and G. Grolemund, <em>R for data science: Import, tidy, transform, visualize, and model data</em>. O’Reilly Media, Inc., 2016.</div>
-</div>
-<div id="ref-advancedr2014" class="csl-entry">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">H. Wickham, <em>Advanced r</em>. CRC Press, 2014.</div>
-</div>
-<div id="ref-masteringsoftware2017" class="csl-entry">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">R. Peng, S. Kross, and B. Anderson, <em>Mastering software development in <span>R</span></em>. Leanpub, 2017.</div>
 </div>
 </div>
             </section>
@@ -286,7 +274,6 @@ Figure 2.1: Data pipeline
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -327,7 +314,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
