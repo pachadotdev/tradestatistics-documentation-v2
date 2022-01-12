@@ -368,9 +368,7 @@ To ease API using, we provide a [Shiny Dashboard](https://shiny.tradestatistics.
 
 ## Apache Arrow datasets
 
-This [zip](https://tradestatistics.io/hs92-visualization.zip) contains all the arrow datasets used to run the API and dashboard. Please check the [md5sum](https://tradestatistics.io/hs92-visualization-zip-md5sum.txt) to verify data integrity after downloading.
-
-All the arrow datasets used to run the API and dashboard can be downloaded from [DigitalOcean Spaces](https://tradestatistics.ams3.digitaloceanspaces.com). This can be used, for example, with [rclone](https://rclone.org/) by running the command
+All the arrow datasets used to run the API and dashboard can be downloaded from [DigitalOcean Spaces](https://tradestatistics.ams3.digitaloceanspaces.com). These can be downloaded, for example, with [rclone](https://rclone.org/) by running the command
 ```
 rclone sync spaces:tradestatistics/hs92-visualization hs92-visualization
 ```

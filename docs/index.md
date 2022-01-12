@@ -1,7 +1,7 @@
 --- 
 title: "Open Trade Statistics"
 author: "Pachá (Mauricio Vargas Sepúlveda)"
-date: "2021-12-15"
+date: "2022-01-11"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [references.bib]
@@ -43,14 +43,12 @@ Before you proceed to download the data, please read this carefully.
 
 No matter your gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion (or lack thereof), or technology choices you are able to use this data for any non-commercial purpose, including academic.
 
-Our software is released under Apache 2.0 license but all the data is under Creative Commons 
+Our software (dashboard, R package, and API) is released under [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0) but all the data is under Creative Commons 
 Attribution-NonCommercial 4.0 International License.
 
 Commercial purposes are strictly out of the boundaries of what you can do with this data according to [UN Comtrade dissemination clauses](https://comtrade.un.org/db/help/PolicyOnUseAndRedissemination.pdf).
 
 Except where otherwise noted, content on this site is licensed under the [Creative Commons BY-NC 4.0 License](https://creativecommons.org/licenses/by-nc/4.0/). Besides CC-BY-NC, when downloading datasets you also agree to the usage conditions explained both to [UN Comtrade Online Usage Agreement](https://comtrade.un.org/db/help/licenseagreement.aspx).
-
-The dashboard and R package are released under [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html), which follow the license recommendations from [The R Project](https://www.r-project.org/Licenses/).
 
 ## Open Source Sponsorships
 
