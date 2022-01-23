@@ -19,7 +19,7 @@ In order to ease data processing (i.e. obtaining trade balance, rankings, etc.) 
 4. Four tables were created for each year: exports, imports, re-exports and re-imports. Then a full join operation was performed between imports and exports, where missing or non-existing flows are replaced by zero values.
 5. The data is offered the same as UN COMTRADE but tidy. There are reporters and partners that appear as "0-unspecified" instead of "NA"/"NULL"/" "/etc.
 
-I also provide alternative tables where I removed transportation costs and mismatches by imputing around 10% of the observations with a gravity-type model and also removed flows with no attributed origin/destination. These tables discount re-imports and re-exports besides harmonizing mismatching flows. The idea of imputing some rows is because I applied a criteria of replacing the observed values with data from the model if and only if that reduced the mismatching between trading partners.
+I also provide alternative tables where I removed transportation costs and mismatches by imputing around 40% of the observations with a gravity-type model and also removed flows with no attributed origin/destination. These tables discount re-imports and re-exports besides harmonizing mismatching flows. The idea of imputing some rows is because I applied a criteria of replacing the observed values with data from the model if and only if that reduced the mismatching between trading partners or if that removed exporter/importer aggregated mismatches larger than 35% or countries reporting zero exports in a year.
 
 ## GitHub repositories
 
